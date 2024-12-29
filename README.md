@@ -141,5 +141,5 @@ docker stop <container-id-or-name>
 - Make sure to install project dependencies using `requirements.txt` if your project setup requires it.
 - For production deployments, replace the Django development server with a production-ready server like Gunicorn, and configure a reverse proxy like Nginx.
 
-For further assistance, refer to the project documentation or contact the project maintainers.
+
 
