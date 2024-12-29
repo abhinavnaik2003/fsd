@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Blog{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" style="margin: 7px;" href="{% url 'index' %}"> Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        {% block content %}
+        <header class="bg-primary text-white text-center py-4">
+            <h1>Welcome to Docker: A Beginner's Guide</h1>
+
+        </header>
+    
+        <div class="container my-5">
+            <section id="what-is-docker" class="mb-5">
+                <h2 class="text-primary">What is Docker?</h2>
+                <p>Docker is an open-source platform designed to help developers build, ship, and run applications inside lightweight, portable containers. A container is a standardized unit of software that packages up code and all its dependencies so the application runs quickly and reliably across different computing environments.</p>
+            </section>
+    
+            <section id="benefits" class="mb-5">
+                <h2 class="text-primary">Benefits of Docker</h2>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Portability:</strong> Containers can run consistently across different environments.</li>
+                    <li class="list-group-item"><strong>Efficiency:</strong> Containers are lightweight and require fewer resources compared to traditional virtual machines.</li>
+                    <li class="list-group-item"><strong>Speed:</strong> Docker simplifies and speeds up the deployment process.</li>
+                    <li class="list-group-item"><strong>Isolation:</strong> Applications and their dependencies are isolated, reducing conflicts.</li>
+                </ul>
+            </section>
+    
+            <section id="getting-started" class="mb-5">
+                <h2 class="text-primary">Getting Started with Docker</h2>
+                <p>Follow these steps to start using Docker:</p>
+                <ol class="list-group">
+                    <li class="list-group-item"><strong>Install Docker:</strong> Download and install Docker Desktop from the <a href="https://www.docker.com/" target="_blank">official Docker website</a>.</li>
+                    <li class="list-group-item"><strong>Run Your First Container:</strong> Open your terminal and run the command: <code>docker run hello-world</code>.</li>
+                    <li class="list-group-item"><strong>Learn Docker Basics:</strong> Familiarize yourself with Docker commands such as <code>docker build</code>, <code>docker run</code>, and <code>docker compose</code>.</li>
+                    <li class="list-group-item"><strong>Create a Dockerfile:</strong> Use a Dockerfile to define the environment for your application.</li>
+                </ol>
+            </section>
+    
+
+        </div>
+        {% endblock %}
+    </main>
+    <footer style="position: fixed; bottom: 0; width: 100%">
+        <p style="text-align: center;">&copy; 2024 Blog</p>
+    </footer>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+

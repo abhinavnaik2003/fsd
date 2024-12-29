@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% block content %}
+<header class="bg-primary text-white text-center py-4">
+    <h1>Blog Home</h1>
+</header>
+<div class="container my-5">
+    <section id="introduction" class="mb-5">
+        <h2 class="text-primary">Introduction</h2>
+        <p>Docker simplifies the deployment process by packaging applications and their dependencies into portable containers. In this guide, we'll walk you through the steps to containerize a Django application using Docker, enabling seamless deployment and scaling.</p>
+    </section>
+
+    <section id="prerequisites" class="mb-5">
+        <h2 class="text-primary">Prerequisites</h2>
+        <ul class="list-group">
+            <li class="list-group-item">A working installation of <strong>Docker</strong>. You can download it from the <a href="https://www.docker.com/" target="_blank">official Docker website</a>.</li>
+            <li class="list-group-item">Basic knowledge of <strong>Django</strong> and its project structure.</li>
+            <li class="list-group-item">A sample Django application to containerize.</li>
+        </ul>
+    </section>
+
+    <section id="steps" class="mb-5">
+        <h2 class="text-primary">Steps to Containerize a Django App</h2>
+        <ol class="list-group">
+            <li class="list-group-item">
+                <strong>Create a Dockerfile:</strong> In the root of your Django project, create a file named <code>Dockerfile</code> with the following content:
+                <pre><code>FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]</code></pre>
+            </li>
+            <li class="list-group-item">
+                <strong>Create a Docker Compose File:</strong> Create a <code>docker-compose.yml</code> file to define services. Here's an example:
+                <pre><code>version: '3.9'
+services:
+web:
+build: .
+ports:
+  - "8000:8000"
+volumes:
+  - .:/app
+depends_on:
+  - db
+db:
+image: postgres
+environment:
+  POSTGRES_USER: user
+  POSTGRES_PASSWORD: password
+  POSTGRES_DB: mydatabase</code></pre>
+            </li>
+            <li class="list-group-item">
+                <strong>Build and Run the Containers:</strong> Run the following commands to build and start your containers:
+                <pre><code>docker-compose build
+docker-compose up</code></pre>
+            </li>
+            <li class="list-group-item">
+                <strong>Access Your App:</strong> Open a browser and navigate to <code>http://localhost:8000</code> to see your Django application running in a container.</li>
+        </ol>
+    </section>
+
+    <section id="conclusion" class="mb-5">
+        <h2 class="text-primary">Conclusion</h2>
+        <p>Containerizing your Django app with Docker simplifies deployment and makes your application more portable and scalable. By following the steps above, you can ensure a consistent environment for development, testing, and production.</p>
+    </section>
+</div>
+{% endblock %}
